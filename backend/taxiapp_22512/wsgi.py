@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taxiapp_22512.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "taxiapp_22512.settings")
 
 application = get_wsgi_application()

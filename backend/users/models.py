@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
@@ -13,10 +14,36 @@ class User(AbstractUser):
     may lead to unexpected bugs and or behaviors in the automated flows provided
     by Crowdbotics. Change it at your own risk.
     """
-
-    # First Name and Last Name do not cover name patterns
-    # around the globe.
-    name = models.CharField(_("Name of User"), blank=True, null=True, max_length=255)
+    name = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    email = models.EmailField(
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    first_name = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    last_name = models.CharField(
+        null=True,
+        blank=True,
+        max_length=255,
+    )
+    timestamp_created = models.DateTimeField(
+        null=True,
+        blank=True,
+        auto_now_add=True,
+    )
+    last_updated = models.DateTimeField(
+        null=True,
+        blank=True,
+        auto_now=True,
+    )
 
     def get_absolute_url(self):
         return reverse("users:detail", kwargs={"username": self.username})
